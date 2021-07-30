@@ -1,25 +1,41 @@
 import React from 'react';
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
+class HornedBeasts extends React.Component {
+    constructor(props){
+        super(props);
 
-class HornedBeasts extends React.Component{
-    render(){
-        return(
+        this.state={
+            counter:0
+        };
+    }
+    clicking = () => {
+        this.setState({
+            counter:this.state.counter + 1,
+        });
+        // this.props.image_url,
+        // this.props.description,
+        // this.props.title,
+
+    }
+    render() {
+
+        return (
             <>
-            <Card style={{ width: '18rem' }}>
-            <Card.Title>Horned Beasts Image </Card.Title>
-  <Card.Img variant="top" src={this.props.image_url} />
-  <Card.Body>
- 
-    <Card.Text >{this.props.title}</Card.Text>
-    <Card.Text >{this.props.description}</Card.Text>
+                <Card style={{ width: '18rem' }} onClick={this.clicking} >
+                    <Card.Img variant="top" src={this.props.image_url} />
+                    <Card.Body>
 
-  </Card.Body>
-</Card>
+                        <Card.Text >{this.props.title}</Card.Text>
+                        <Card.Text >{this.props.description}</Card.Text>
+                    </Card.Body>
+                    <Button> Click Me For Voting ❣️ :{this.state.counter} </Button>
+                </Card>
             </>
         )
     }
-    
-    }
-    export default HornedBeasts ;
+
+}
+export default HornedBeasts;
