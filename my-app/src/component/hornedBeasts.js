@@ -27,7 +27,7 @@ class HornedBeasts extends React.Component {
 
         return (
             <>
-                <Card style={{ width: '18rem' }} onClick={this.clicking} >
+                <Card style={{ width: '18rem' , height : "28rem" }} onClick={this.clicking} >
                     <Card.Img variant="top" src={this.props.image_url} />
                     <Card.Body>
 

@@ -21,7 +21,7 @@ class Main extends React.Component {
             <>
                 {this.getData().map((n) => {
                     return (
-                        <Col lg={4}>
+                        <Col lg={3}>
                             <HornedBeasts
                                 title={n.title}
                                 image_url={n.image_url}

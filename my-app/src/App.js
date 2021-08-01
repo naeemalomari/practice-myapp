@@ -5,7 +5,7 @@ import Main from './component/main';
 import DataArr from './component/data.json'
 import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
+import { Col , Form} from 'react-bootstrap';
 import SelectedBeasts from './component/SelectedBeasts';
 
 
@@ -20,6 +20,7 @@ class App extends React.Component {
       description: '',
       // data: DataArr,
       show: false,
+      filteredData:DataArr,
     };
   }
 
@@ -40,6 +41,26 @@ class App extends React.Component {
       show: false,
     });
   };
+  getNumOfHorns=(event)=>{
+// event.preventDefault(); this is just for submit , onchange don't need to preventDefault 
+// console.log(event.target.value);
+let horns =event.target.value;
+let filterData = DataArr.filter((item) => {
+
+  if (item.horns == horns)
+  {
+    return true;
+  }
+  if(horns =='all'){
+    return true;
+  }
+  
+})
+this.setState({
+  filteredData:filterData,
+  })
+
+  }
   render() {
     return (
       <>
@@ -47,12 +68,22 @@ class App extends React.Component {
           <Row>
             <Col>
               <Header />
+              <Form.Label > How many horns ? </Form.Label> 
+
+              <Form.Select aria-label="Default select example" onChange={this.getNumOfHorns}>
+  <option value='All'> All </option>
+  <option value="1"> One </option>
+  <option value="2"> Two </option>
+  <option value="3"> Three </option>
+  <option value="100"> Wow.. </option>
+
+</Form.Select>
             </Col>
           </Row>
 
           <Row >
             <Main
-              data={DataArr}
+              data={this.state.filteredData}
               modalSelected={this.modalSelected}
               stateUpdate={this.handleShow}
             />
